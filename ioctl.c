@@ -67,13 +67,13 @@ static long timer_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned l
                           + msecs_to_jiffies(atomic_read(&dev->timeperiod)));
                 break;
         case SETPERIOD_CMD: 
-#if 0
+#if 1
                 ret = copy_from_user(value, (int *)arg, sizeof(int));
                 if (ret < 0) {
                         goto error;
                 }
                 printk("value = %d\n", value[0]);
-                atomic_set(&dev->timeperiod, value);
+                atomic_set(&dev->timeperiod, value[0]);
 #else
                 atomic_set(&dev->timeperiod, arg);
 #endif

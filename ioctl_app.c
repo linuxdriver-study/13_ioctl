@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
                         scanf("%d", &arg);
                         printf("arg = %d\n", arg);
                         cmd = SETPERIOD_CMD;
-                        ioctl(fd, cmd, arg);
+                        ioctl(fd, cmd, &arg);
                 }
         }
 
