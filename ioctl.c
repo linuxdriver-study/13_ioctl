@@ -54,11 +54,14 @@ static long timer_unlocked_ioctl(struct file *filp, unsigned int cmd, unsigned l
         int ret = 0;
         int value[1] = {0};
         struct led_device_struct *dev = filp->private_data;
+        int command = 0;
+        
+        ret = copy_from_user(&command, (int *)cmd, sizeof(int));
+        if (ret < 0) {
+                goto error;
+        }
 
-        printk("cmd = %d arg = %ld\n", cmd, arg);
-        printk("%d %d %d\n", CLOSE_CMD, OPEN_CMD, SETPERIOD_CMD);
-
-        switch (cmd) {
+        switch (command) {
         case CLOSE_CMD:
                 del_timer_sync(&dev->timer);
                 break;

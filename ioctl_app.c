@@ -39,16 +39,16 @@ int main(int argc, char *argv[])
                 printf("ret = %d\n", ret);
                 if (cmd == 1) {
                         cmd = CLOSE_CMD;
-                        ioctl(fd, cmd, arg);
+                        ioctl(fd, (int)&cmd, (int)&arg);
                 } else if (cmd == 2) {
                         cmd = OPEN_CMD;
-                        ioctl(fd, cmd, arg);
+                        ioctl(fd, (int)&cmd, (int)&arg);
                 } else if (cmd == 3) {
                         printf("Input arg:");
                         scanf("%d", &arg);
                         printf("arg = %d\n", arg);
                         cmd = SETPERIOD_CMD;
-                        ioctl(fd, cmd, &arg);
+                        ioctl(fd, (int)&cmd, (int)&arg);
                 }
         }
 
